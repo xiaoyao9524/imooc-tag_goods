@@ -1,0 +1,42 @@
+package com.imooc.tag.goods.controller.vo;
+
+import lombok.Data;
+
+@Data
+public class BaseResponse<T> {
+    private Integer code;
+    private String Message;
+    private T data;
+
+    /*
+    * 返回成功响应
+    * */
+    public static <U extends BaseResponse> U getSuccessResult(Class<U> clazz) {
+        try {
+            U u = clazz.newInstance();
+            u.setCode(0);
+            u.setMessage("请求成功");
+
+            return u;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*
+     * 返回失败响应
+     * */
+    public static <U extends BaseResponse> U getFailResult(Class<U> clazz) {
+        try {
+            U u = clazz.newInstance();
+            u.setCode(1);
+            u.setMessage("请求失败");
+
+            return u;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+}
