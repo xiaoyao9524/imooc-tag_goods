@@ -8,9 +8,9 @@ import java.util.Date;
 public class TagEntity extends BaseEntity {
     private Long id;
     private String name;
+    private String style;
     private String description;
     private Integer status;
-    private String style;
     private Integer cleanOnDelete;
     private Integer cleanOnExpire;
 }

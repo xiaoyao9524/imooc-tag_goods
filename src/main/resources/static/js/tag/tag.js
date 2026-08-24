@@ -27,6 +27,7 @@ var tableIns = table.render({
 
 // 按条件查询
 function query() {
+    console.log(tableIns.reload)
     tableIns.reload({
         where: {
             tagId: $("#tagId").val(),

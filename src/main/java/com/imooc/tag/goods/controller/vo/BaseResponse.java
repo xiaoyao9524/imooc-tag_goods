@@ -5,12 +5,12 @@ import lombok.Data;
 @Data
 public class BaseResponse<T> {
     private Integer code;
-    private String Message;
+    private String message;
     private T data;
 
     /*
-    * 返回成功响应
-    * */
+     * 返回成功响应
+     * */
     public static <U extends BaseResponse> U getSuccessResult(Class<U> clazz) {
         try {
             U u = clazz.newInstance();
@@ -36,7 +36,5 @@ public class BaseResponse<T> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }

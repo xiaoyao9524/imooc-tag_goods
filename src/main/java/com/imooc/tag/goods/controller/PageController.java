@@ -17,4 +17,9 @@ public class PageController {
     public String main () {
         return "main/main";
     }
+
+    @RequestMapping("tag/tagList")
+    public String tagList () {
+        return "tag/tagList";
+    }
 }
