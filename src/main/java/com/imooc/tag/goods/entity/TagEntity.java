@@ -11,6 +11,7 @@ public class TagEntity extends BaseEntity {
     private String style;
     private String description;
     private Integer status;
+    private Date expireTime;
     private Integer cleanOnDelete;
     private Integer cleanOnExpire;
 }

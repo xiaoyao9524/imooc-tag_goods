@@ -30,7 +30,41 @@
         </where>
     </select>
 
-<!--    <select id="queryTagById" resultMap="BaseResultMap">-->
+    <insert id="insert" parameterType="com.imooc.tag.goods.entity.TagEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tag(
+        <trim suffixOverrides=",">
+            `name`,
+            style,
+            description,
+            status,
+            expire_time,
+            clean_on_delete,
+            clean_on_expire,
+            creator,
+            modifier,
+            create_time,
+            modify_time
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+            #{name},
+            #{style},
+            #{description},
+            #{status},
+            #{expireTime},
+            #{cleanOnDelete},
+            #{cleanOnExpire},
+            #{creator},
+            #{modifier},
+            #{createTime},
+            #{modifyTime},
+        </trim>
+        )
+    </insert>
+
+    <!--    <select id="queryTagById" resultMap="BaseResultMap">-->
 <!--        select *-->
 <!--        from tag-->
 <!--        where id=#{id}-->

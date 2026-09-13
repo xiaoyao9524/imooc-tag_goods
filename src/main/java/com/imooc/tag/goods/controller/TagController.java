@@ -1,11 +1,14 @@
 package com.imooc.tag.goods.controller;
 
+import com.imooc.tag.goods.common.enums.TagStatusEnum;
 import com.imooc.tag.goods.controller.vo.BaseResponse;
 import com.imooc.tag.goods.controller.vo.TagVO;
 import com.imooc.tag.goods.entity.TagEntity;
 import com.imooc.tag.goods.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,5 +26,13 @@ public class TagController {
         List<TagVO> tagVos = tagEntities.stream().map(TagVO::transferEntityToVO).collect(Collectors.toList());
         successResult.setData(tagVos);
         return successResult;
+    }
+
+    @PostMapping("/tag")
+    public BaseResponse insert(@RequestBody TagEntity tagEntity) {
+        BaseResponse baseResponse = BaseResponse.getSuccessResult(BaseResponse.class);
+        tagEntity.setStatus(TagStatusEnum.USE.getCode());
+        Integer result = tagService.insert(tagEntity);
+        return baseResponse;
     }
 }

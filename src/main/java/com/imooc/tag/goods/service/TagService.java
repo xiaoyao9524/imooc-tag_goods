@@ -14,4 +14,10 @@ public class TagService {
     public List<TagEntity> queryTagList (Long id, String tagName) {
         return tagMapper.queryTagList(id, tagName);
     }
+
+    public Integer insert (TagEntity tagEntity) {
+        Integer result = tagMapper.insert(tagEntity);
+
+        return result;
+    }
 }
