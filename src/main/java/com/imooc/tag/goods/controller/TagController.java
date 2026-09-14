@@ -1,5 +1,6 @@
 package com.imooc.tag.goods.controller;
 
+import com.imooc.tag.goods.common.aspect.annotation.AutoFillDefaultValue;
 import com.imooc.tag.goods.common.enums.TagStatusEnum;
 import com.imooc.tag.goods.controller.vo.BaseResponse;
 import com.imooc.tag.goods.controller.vo.TagVO;
@@ -28,6 +29,7 @@ public class TagController {
         return successResult;
     }
 
+    @AutoFillDefaultValue
     @PostMapping("/tag")
     public BaseResponse insert(@RequestBody TagEntity tagEntity) {
         BaseResponse baseResponse = BaseResponse.getSuccessResult(BaseResponse.class);
