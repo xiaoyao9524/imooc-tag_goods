@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.tag.goods.mapper.GoodsMapper">
+    <resultMap id="BaseResultMap" type="com.imooc.tag.goods.entity.GoodsEntity">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+        <result column="img" property="img"/>
+        <result column="description" property="description"/>
+        <result column="creator" property="creator"/>
+        <result column="modifier" property="modifier"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modify_time" property="modifyTime"/>
+    </resultMap>
+
+    <select id="queryGoodsList" resultMap="BaseResultMap">
+        select * from goods
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null">
+                and `name` like concat('%',#{name}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

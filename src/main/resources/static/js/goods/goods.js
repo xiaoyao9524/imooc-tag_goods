@@ -16,8 +16,8 @@ var tableIns = table.render({
     , cols: [[
         {field: 'id', title: '商品id', width: 90}
         , {field: 'name', title: '商品名称', width: 150, templet: "#goodsNameAndTag"}
-        , {field: 'img', title: '商品图片', templet: '#goodsListImage'}
-        , {field: 'description', title: '商品描述'}
+        , {field: 'img', title: '商品图片', width: 150, templet: '#goodsListImage'}
+        , {field: 'description', title: '商品描述', width: 150, templet: "#goodsDescription"}
         , {field: 'creator', title: '创建人', width: 90}
         , {field: 'createTime', title: '创建时间'}
         , {field: 'modifier', title: '修改人', width: 90}
@@ -30,8 +30,8 @@ var tableIns = table.render({
 function query() {
     tableIns.reload({
         where: {
-            goodsId: $("#goodsId").val(),
-            goodsName: $("#goodsName").val()
+            id: $("#id").val(),
+            name: $("#name").val()
         }
         , page: {
             curr: 1 //重新从第 1 页开始

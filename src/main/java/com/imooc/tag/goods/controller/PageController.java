@@ -1,6 +1,7 @@
 package com.imooc.tag.goods.controller;
 
 import com.imooc.tag.goods.entity.TagEntity;
+import com.imooc.tag.goods.service.GoodsService;
 import com.imooc.tag.goods.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private GoodsService goodsService;
 
     @RequestMapping("/test")
     public String test (Model model) {
@@ -25,12 +29,12 @@ public class PageController {
         return "main/main";
     }
 
-    @RequestMapping("tag/tagList")
+    @RequestMapping("/tag/tagList")
     public String tagList () {
         return "tag/tagList";
     }
 
-    @RequestMapping("tag/tagAdd")
+    @RequestMapping("/tag/tagAdd")
     public String tagAdd () {
         return "tag/tagAdd";
     }
@@ -41,4 +45,10 @@ public class PageController {
         model.addAttribute("tag", tagEntity);
         return "tag/tagUpdate";
     }
+
+    @RequestMapping("/goods/goodsList")
+    public String goodsList () {
+        return "goods/goodsList";
+    }
+
 }

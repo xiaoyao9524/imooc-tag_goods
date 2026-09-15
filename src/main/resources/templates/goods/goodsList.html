@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.13.6/css/layui.css}">
     <style>
         .goods-list-image {
             width: 100px;
@@ -36,14 +36,14 @@
     <div class="layui-inline">
         <label>商品id</label>
         <div class="layui-input-inline" style="width: 150px;">
-            <input type="text" id="goodsId" autocomplete="off" class="layui-input">
+            <input type="text" id="id" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-inline">
         <label class="layui-form-label">商品名称</label>
         <div class="layui-input-inline" style="width: 150px;">
-            <input type="text" id="goodsName" autocomplete="off"
+            <input type="text" id="name" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -70,11 +70,11 @@
         <div>{{d.name}}</div>
         <ul style="display: flex;flex-wrap: wrap;">
             {{# layui.each(d.tagList, function(index, item){ }}
-            <li style="color: {{ item.style }}" class="goods-tag">
+            <li class="goods-tag">
                 <span>{{ item.name }}</span>
             </li>
             {{# }); }}
-            {{# if(d.tagList === null || d.tagList.length === 0){ }}
+            {{# if(!d.tagList || d.tagList.length === 0){ }}
 
             {{# } }}
         </ul>
@@ -84,6 +84,11 @@
 <script type="text/html" id="goodsListImage">
     <img src="{{d.img}}" class="goods-list-image"/>
 </script>
+
+<script type="text/html" id="goodsDescription">
+    <div>{{d.description}}</div>
+</script>
+
 <!--操作项单元格-->
 <script type="text/html" id="goodsBar">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -91,8 +96,8 @@
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="tag">打标</a>
 </script>
 
-<script th:src="@{/webjars/layui/layui.all.js}"></script>
-<script th:src="@{/webjars/jquery/jquery.js}"></script>
+<script th:src="@{/webjars/layui/2.13.6/layui.js}"></script>
+<script th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
 <script th:src="@{/js/common/common.js}"></script>
 <script th:src="@{/js/goods/goods.js}"></script>
 </body>
