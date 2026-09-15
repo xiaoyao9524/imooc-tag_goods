@@ -9,5 +9,7 @@ import java.util.List;
 @Mapper
 public interface TagMapper {
     List<TagEntity> queryTagList(@Param("id") Long id, @Param("tagName") String tagName);
+    TagEntity queryTagById(@Param("id") Long id);
     Integer insert(TagEntity tagEntity);
+    Integer update(TagEntity tagEntity);
 }

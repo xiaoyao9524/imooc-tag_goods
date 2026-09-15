@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 @Slf4j
 public class MyControllerAdvice {
-
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public BaseResponse errorHandler(Exception e) {

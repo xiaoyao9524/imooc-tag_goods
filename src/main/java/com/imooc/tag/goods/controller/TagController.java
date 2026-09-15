@@ -7,10 +7,7 @@ import com.imooc.tag.goods.controller.vo.TagVO;
 import com.imooc.tag.goods.entity.TagEntity;
 import com.imooc.tag.goods.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +33,43 @@ public class TagController {
         tagEntity.setStatus(TagStatusEnum.USE.getCode());
         Integer result = tagService.insert(tagEntity);
         return baseResponse;
+    }
+
+    @AutoFillDefaultValue
+    @PutMapping("/tag")
+    public BaseResponse update(@RequestBody TagEntity tagEntity) {
+        BaseResponse baseResponse = BaseResponse.getSuccessResult(BaseResponse.class);
+        Integer result = tagService.update(tagEntity);
+        return baseResponse;
+    }
+
+    @AutoFillDefaultValue
+    @DeleteMapping("/tag/{id}")
+    public BaseResponse delete(@PathVariable Long id) {
+        TagEntity tagEntity = tagService.queryTagById(id);
+        if (tagEntity == null) {
+            return BaseResponse.getFailResult(BaseResponse.class);
+        }
+
+        tagEntity.setStatus(TagStatusEnum.DELETE.getCode());
+
+        tagService.update(tagEntity);
+
+        return BaseResponse.getSuccessResult(BaseResponse.class);
+    }
+
+    @GetMapping("/tag/detail/{id}")
+    public BaseResponse detail(@PathVariable Long id) {
+        TagEntity tagEntity = tagService.queryTagById(id);
+
+        if (tagEntity == null) {
+            return BaseResponse.getFailResult(BaseResponse.class);
+        }
+
+        BaseResponse<TagEntity> successResult = BaseResponse.getSuccessResult(BaseResponse.class);
+
+        successResult.setData(tagEntity);
+
+        return successResult;
     }
 }

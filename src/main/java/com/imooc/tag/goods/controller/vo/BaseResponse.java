@@ -11,11 +11,12 @@ public class BaseResponse<T> {
     /*
      * 返回成功响应
      * */
-    public static <U extends BaseResponse> U getSuccessResult(Class<U> clazz) {
+    public static <U extends BaseResponse, T> U getSuccessResult(Class<U> clazz) {
         try {
             U u = clazz.newInstance();
             u.setCode(0);
             u.setMessage("请求成功");
+
 
             return u;
         } catch (Exception e) {
