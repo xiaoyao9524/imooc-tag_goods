@@ -1,5 +1,6 @@
 package com.imooc.tag.goods.common.aspect.impl;
 
+import com.imooc.tag.goods.controller.param.BaseParam;
 import com.imooc.tag.goods.entity.BaseEntity;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
@@ -34,6 +35,13 @@ public class AutoFillDefaultValueAspect {
                         baseEntity.setModifier(0);
                         baseEntity.setCreateTime(new Date());
                         baseEntity.setModifyTime(new Date());
+                    }
+
+                    if (arg instanceof BaseParam baseParam) {
+                        baseParam.setCreator(0);
+                        baseParam.setModifier(0);
+                        baseParam.setCreateTime(new Date());
+                        baseParam.setModifyTime(new Date());
                     }
                 }
             }

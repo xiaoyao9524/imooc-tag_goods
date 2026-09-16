@@ -1,13 +1,18 @@
 package com.imooc.tag.goods.controller;
 
 import com.imooc.tag.goods.entity.TagEntity;
+import com.imooc.tag.goods.entity.TagMarkEntity;
 import com.imooc.tag.goods.service.GoodsService;
+import com.imooc.tag.goods.service.TagMarkService;
 import com.imooc.tag.goods.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class PageController {
@@ -16,6 +21,9 @@ public class PageController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private TagMarkService tagMarkService;
 
     @RequestMapping("/test")
     public String test (Model model) {
@@ -54,6 +62,15 @@ public class PageController {
     @RequestMapping("/goods/goodsAdd")
     public String goodsAdd () {
         return "goods/goodsAdd";
+    }
+
+    @RequestMapping("/goods/goodsTag/{id}")
+    public String goodsTag (@PathVariable Long id, Model model) {
+        model.addAttribute("goodsId", id);
+        List<TagMarkEntity> tagMarkEntity = tagMarkService.queryTagMarkByGoods(id);
+        List<Long> tagIdList = tagMarkEntity.stream().map(TagMarkEntity::getTagId).collect(Collectors.toList());
+        model.addAttribute("tagIdList", tagIdList);
+        return "goods/goodsTag";
     }
 
 }
