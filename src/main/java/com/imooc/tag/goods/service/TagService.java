@@ -19,6 +19,10 @@ public class TagService {
         return tagMapper.queryTagById(id);
     }
 
+    public List<TagEntity> queryTagByIds(List<Long> tagIdList) {
+        return tagMapper.queryTagByIds(tagIdList);
+    }
+
     public Integer insert (TagEntity tagEntity) {
         return tagMapper.insert(tagEntity);
     }

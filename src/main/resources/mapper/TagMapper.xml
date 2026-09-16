@@ -37,6 +37,19 @@
         where `id` = #{id}
     </select>
 
+    <select id="queryTagByIds" resultMap="BaseResultMap">
+        select *
+        from tag
+        <where>
+            <if test="tagIdList != null and tagIdList.size() > 0">
+                `id` in
+                <foreach collection="tagIdList" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
     <insert id="insert" parameterType="com.imooc.tag.goods.entity.TagEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tag(
         <trim suffixOverrides=",">

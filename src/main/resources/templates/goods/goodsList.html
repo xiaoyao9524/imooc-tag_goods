@@ -70,8 +70,8 @@
         <div>{{d.name}}</div>
         <ul style="display: flex;flex-wrap: wrap;">
             {{# layui.each(d.tagList, function(index, item){ }}
-            <li class="goods-tag">
-                <span>{{ item.name }}</span>
+            <li class="goods-tag" style="border: 1px solid {{item.style}};">
+                <span style="color: {{item.style}};">{{ item.name }}</span>
             </li>
             {{# }); }}
             {{# if(!d.tagList || d.tagList.length === 0){ }}

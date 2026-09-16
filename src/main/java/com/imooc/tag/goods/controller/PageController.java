@@ -1,5 +1,6 @@
 package com.imooc.tag.goods.controller;
 
+import com.imooc.tag.goods.entity.GoodsEntity;
 import com.imooc.tag.goods.entity.TagEntity;
 import com.imooc.tag.goods.entity.TagMarkEntity;
 import com.imooc.tag.goods.service.GoodsService;
@@ -71,6 +72,15 @@ public class PageController {
         List<Long> tagIdList = tagMarkEntity.stream().map(TagMarkEntity::getTagId).collect(Collectors.toList());
         model.addAttribute("tagIdList", tagIdList);
         return "goods/goodsTag";
+    }
+
+    @RequestMapping("/goods/goodsDetail")
+    public String goodsDetail (Model model) {
+        List<GoodsEntity> goodEneitys = goodsService.queryGoodsList(null, "");
+        model.addAttribute("goodsDetail", goodEneitys);
+
+        return "goods/goodsDetail";
+
     }
 
 }
