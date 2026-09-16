@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface GoodsMapper {
     List<GoodsEntity> queryGoodsList(@Param("id") Long id, @Param("name") String name);
+    Integer insertGoods(GoodsEntity goodsEntity);
 }

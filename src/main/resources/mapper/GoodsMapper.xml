@@ -26,4 +26,24 @@
             </if>
         </where>
     </select>
+
+    <insert id="insertGoods" parameterType="com.imooc.tag.goods.entity.GoodsEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO goods(
+        <trim suffixOverrides=",">
+            `name`,
+            `img`,
+            `description`,
+            `price`
+        </trim>
+        )
+        VALUES(
+        <trim suffixOverrides=",">
+            #{name},
+            #{img},
+            #{description},
+            #{price}
+        </trim>
+        )
+    </insert>
 </mapper>

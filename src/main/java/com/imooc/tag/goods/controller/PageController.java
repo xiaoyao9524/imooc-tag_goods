@@ -51,4 +51,9 @@ public class PageController {
         return "goods/goodsList";
     }
 
+    @RequestMapping("/goods/goodsAdd")
+    public String goodsAdd () {
+        return "goods/goodsAdd";
+    }
+
 }

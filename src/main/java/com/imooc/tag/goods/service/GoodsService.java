@@ -16,4 +16,8 @@ public class GoodsService {
     public List<GoodsEntity> queryGoodsList (Long id, String name) {
        return goodsMapper.queryGoodsList(id, name);
     }
+
+    public Integer insertGoods(GoodsEntity goodsEntity) {
+        return goodsMapper.insertGoods(goodsEntity);
+    }
 }
