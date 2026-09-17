@@ -10,4 +10,5 @@ public interface TagMarkMapper {
     Integer insert (TagMarkEntity tagMarkEntity);
     List<TagMarkEntity> queryTagMarkByGoods (Long goodsId);
     Integer deleteByGoodsId(Long goodsId);
+    Integer deleteByTagId(Long tagId);
 }

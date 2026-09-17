@@ -5,6 +5,7 @@ import com.imooc.tag.goods.common.enums.TagStatusEnum;
 import com.imooc.tag.goods.controller.vo.BaseResponse;
 import com.imooc.tag.goods.controller.vo.TagVO;
 import com.imooc.tag.goods.entity.TagEntity;
+import com.imooc.tag.goods.service.TagMarkService;
 import com.imooc.tag.goods.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
 public class TagController {
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private TagMarkService tagMarkService;
 
     @GetMapping("/tag")
     public BaseResponse<List<TagVO>> queryTagList(Long tagId, String tagName) {
@@ -54,6 +58,10 @@ public class TagController {
         tagEntity.setStatus(TagStatusEnum.DELETE.getCode());
 
         tagService.update(tagEntity);
+
+        if(tagEntity.getCleanOnDelete() == 0) {
+            tagMarkService.deleteByTagId(tagEntity.getId());
+        }
 
         return BaseResponse.getSuccessResult(BaseResponse.class);
     }

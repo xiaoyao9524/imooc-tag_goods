@@ -37,6 +37,12 @@
         where `id` = #{id}
     </select>
 
+    <select id="queryExpireTag" resultMap="BaseResultMap">
+        select *
+        from tag
+        where `status` = 0 and expire_time &lt; #{date};
+    </select>
+
     <select id="queryTagByIds" resultMap="BaseResultMap">
         select *
         from tag
